@@ -111,6 +111,48 @@ input[type="checkbox"]:checked + label + .repayment-type + .interest-only-type {
   border: 1px solid var(--color-lime);
 }
 
+/* Styles pour les inputs avec un focus */
+.input-mortgage-amount,
+.input-mortgage-term,
+.input-interest-rate {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  border: 1px solid var(--color-slate-700);
+  border-radius: var(--borderRadius-5);
+  overflow: hidden;
+}
+
+.input-mortgage-amount label,
+.input-mortgage-term label,
+.input-interest-rate label {
+  background-color: var(--color-slate-100);
+  color: var(--color-slate-700);
+  padding: 10px 15px;
+  font-weight: bolder;
+  display: block;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.input-mortgage-amount input,
+.input-mortgage-term input,
+.input-interest-rate input {
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.input-mortgage-amount.focused label,
+.input-mortgage-term.focused label,
+.input-interest-rate.focused label {
+  background-color: var(--color-lime);
+  color: var(--color-slate-900);
+}
+
+.input-mortgage-amount.focused,
+.input-mortgage-term.focused,
+.input-interest-rate.focused {
+  border-color: var(--color-lime) !important;
+}
+
 .container {
   width: 375px;
 }
