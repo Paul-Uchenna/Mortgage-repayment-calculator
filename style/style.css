@@ -60,6 +60,57 @@ input:focus {
   outline: none;
 }
 
+/* Cachez le checkbox natif */
+input[type="checkbox"] {
+  display: none;
+}
+
+/* Styles personnalisés pour le checkbox rond */
+input[type="checkbox"] + label {
+  position: relative;
+  cursor: pointer;
+  padding-left: 35px;
+  line-height: 20px;
+  user-select: none;
+}
+
+/* Créez le cercle */
+input[type="checkbox"] + label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--color-slate-700);
+  background: var(--color-white);
+}
+
+/* Styles pour l'état coché */
+input[type="checkbox"]:checked + label::before {
+  border-color: var(--color-lime);
+}
+
+input[type="checkbox"]:checked + label::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-lime);
+}
+
+/* Appliquez un style au conteneur parent lorsque l'input est checked */
+input[type="checkbox"]:checked + label::before,
+input[type="checkbox"]:checked + label + .repayment-type + .interest-only-type {
+  border: 1px solid var(--color-lime);
+}
+
 .container {
   width: 375px;
 }
