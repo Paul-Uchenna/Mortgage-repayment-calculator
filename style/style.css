@@ -60,6 +60,18 @@ input:focus {
   outline: none;
 }
 
+/* Chrome, Safari, Edge, Opera arrow remove*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox arrow remove*/
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 /* Cachez le checkbox natif */
 input[type="checkbox"] {
   display: none;
