@@ -233,6 +233,13 @@ input[type="checkbox"]:checked + label + .repayment-type + .interest-only-type {
   border-color: var(--color-slate-900);
 }
 
+.mortgage-amount-heading .error {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-red);
+  margin-top: 25px;
+}
+
 /* mortgage-term */
 
 .mortgage-term-heading {
@@ -274,11 +281,14 @@ input[type="checkbox"]:checked + label + .repayment-type + .interest-only-type {
   border-color: var(--color-slate-900);
 }
 
-/* interest-rate */
-
-.interest-rate-heading {
-  margin-bottom: 25px;
+.mortgage-term-heading .error {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-red);
+  margin-top: 25px;
 }
+
+/* interest-rate */
 
 .interest-rate-heading .interest-rate {
   font-size: var(--font-size-paragraph);
@@ -315,9 +325,17 @@ input[type="checkbox"]:checked + label + .repayment-type + .interest-only-type {
   border-color: var(--color-slate-900);
 }
 
+.interest-rate-heading .error {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-red);
+  margin-top: 25px;
+}
+
 /* mortgage-type */
 
 .mortgage-type-heading {
+  margin-top: 25px;
   margin-bottom: 15px;
   display: flex;
   flex-direction: column;
