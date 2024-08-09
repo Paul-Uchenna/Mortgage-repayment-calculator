@@ -28,31 +28,31 @@ document
     });
   });
 
-// Cache DOM elements for future use
+// Cache DOM elements
 const clearBtn = document.getElementById("clear-btn");
-const mortgageAmount = parseFloat(
-  document.getElementById("mortgage-amount").value
-);
-const mortgageTerm = parseInt(
-  document.getElementById("mortgage-term", 10).value
-);
-const interestRate = parseFloat(document.getElementById("interest-rate").value);
 const btnCalculate = document.getElementById("btn-calculate");
 
 // clear Inputs
 clearBtn.addEventListener("click", (event) => {
   event.preventDefault();
 
-  const Allinputs = document.querySelectorAll(
+  const allInputs = document.querySelectorAll(
     "#mortgage-amount,#mortgage-term,#interest-rate"
   );
 
-  Allinputs.forEach((input) => (input.value = ""));
+  allInputs.forEach((input) => (input.value = ""));
 });
 
 // Mortgage Operation
-function monthlyRepayment() {
-  let principal = mortgageAmount;
+function OperationRepayment() {
+  // Cache DOM elements
+  let principal = parseFloat(document.getElementById("mortgage-amount").value);
+  let mortgageTerm = parseInt(
+    document.getElementById("mortgage-term").value,
+    10
+  );
+  let interestRate = parseFloat(document.getElementById("interest-rate").value);
+
   let monthTerm = mortgageTerm * 12;
   let monthRate = interestRate / 100 / 12;
 
@@ -65,8 +65,28 @@ function monthlyRepayment() {
   return { monthlyPayment, totalRepayment };
 }
 
+function resultDisplay(resultOperation) {
+  let emptyResult = document.querySelector(".empty-result");
+  emptyResult.style.display = "none";
+
+  let completeResults = document.querySelector(".complete-results");
+  completeResults.style.display = "block";
+
+  let monthlyPayment = (document.querySelector(
+    '[data-result="monthly-payment"]'
+  ).textContent = resultOperation.monthlyPayment.toFixed(2));
+
+  let totalRepayment = (document.querySelector(
+    '[data-result="total-repayment"]'
+  ).textContent = resultOperation.totalRepayment.toFixed(2));
+
+  return { monthlyPayment, totalRepayment };
+}
+
 btnCalculate.addEventListener("click", () => {
-  monthlyRepayment();
-  console.log(monthlyRepayment().monthlyPayment.toFixed(2));
-  console.log(monthlyRepayment().totalRepayment.toFixed(2));
+  const result = OperationRepayment();
+  console.log(`Monthly Payment: ${result.monthlyPayment.toFixed(2)}`);
+  console.log(`Total Repayment: ${result.totalRepayment.toFixed(2)}`);
+
+  resultDisplay(result);
 });
