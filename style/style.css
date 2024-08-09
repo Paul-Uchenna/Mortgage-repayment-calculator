@@ -472,7 +472,7 @@ input[type="checkbox"]:checked + label + .repayment-type + .interest-only-type {
 .repayments .total-repayements p {
   margin: 10px 0;
   color: var(--color-white);
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 700;
 }
 
