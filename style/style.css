@@ -403,8 +403,8 @@ input[type="checkbox"]:checked + label + .repayment-type + .interest-only-type {
   align-items: center;
   justify-content: center;
   height: 300px;
-  /* display: none; */
 }
+
 .results-section .empty-result img {
   width: 150px;
 }
