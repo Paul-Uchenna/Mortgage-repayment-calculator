@@ -44,6 +44,7 @@ clearBtn.addEventListener("click", (event) => {
 });
 
 // Mortgage Operation
+// Calculates monthly payments and total repayment
 function OperationRepayment() {
   // Cache DOM elements
   let principal = parseFloat(document.getElementById("mortgage-amount").value);
@@ -65,6 +66,8 @@ function OperationRepayment() {
   return { monthlyPayment, totalRepayment };
 }
 
+// Display Results
+// Displays the calculated results on the page
 function resultDisplay(resultOperation) {
   let emptyResult = document.querySelector(".empty-result");
   emptyResult.style.display = "none";
@@ -74,19 +77,22 @@ function resultDisplay(resultOperation) {
 
   let monthlyPayment = (document.querySelector(
     '[data-result="monthly-payment"]'
-  ).textContent = resultOperation.monthlyPayment.toFixed(2));
+  ).textContent = resultOperation.monthlyPayment.toLocaleString("en-GB", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }));
 
   let totalRepayment = (document.querySelector(
     '[data-result="total-repayment"]'
-  ).textContent = resultOperation.totalRepayment.toFixed(2));
+  ).textContent = resultOperation.totalRepayment.toLocaleString("en-GB", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }));
 
   return { monthlyPayment, totalRepayment };
 }
 
 btnCalculate.addEventListener("click", () => {
   const result = OperationRepayment();
-  console.log(`Monthly Payment: ${result.monthlyPayment.toFixed(2)}`);
-  console.log(`Total Repayment: ${result.totalRepayment.toFixed(2)}`);
-
   resultDisplay(result);
 });
