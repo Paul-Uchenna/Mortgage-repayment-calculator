@@ -43,6 +43,112 @@ clearBtn.addEventListener("click", (event) => {
   allInputs.forEach((input) => (input.value = ""));
 });
 
+// functoin that check if inputs is valid
+function isAmountValidInput() {
+  const divInputAmountError = document.querySelector(".input-mortgage-amount");
+  const amountSpanError = document.getElementById("amount-error-message");
+  const amountLabelError = document.querySelector(
+    "label[for='mortgage-amount']"
+  );
+  const amountInput = document.getElementById("mortgage-amount");
+
+  amountSpanError.textContent = "";
+
+  const amountValue = parseFloat(amountInput.value);
+
+  if (isNaN(amountValue)) {
+    amountSpanError.textContent = "This field is required";
+
+    divInputAmountError.style.border = "1px solid var(--color-red)";
+    amountLabelError.style.color = "var(--color-white)";
+    amountLabelError.style.background = "var(--color-red)";
+
+    return false;
+  }
+
+  divInputAmountError.style.border = "";
+  amountLabelError.style.color = "";
+  amountLabelError.style.background = "";
+
+  return true;
+}
+
+function isTermValidInput() {
+  const divInputTermError = document.querySelector(".input-mortgage-term");
+  const termSpanError = document.getElementById("term-error-message");
+  const termLabelError = document.querySelector("label[for='mortgage-term']");
+  const termInput = document.getElementById("mortgage-term");
+
+  termSpanError.textContent = "";
+
+  const termValue = parseInt(termInput.value);
+
+  if (isNaN(termValue)) {
+    termSpanError.textContent = "This field is required";
+
+    divInputTermError.style.border = "1px solid var(--color-red)";
+    termLabelError.style.color = "var(--color-white)";
+    termLabelError.style.background = "var(--color-red)";
+
+    return false;
+  }
+
+  divInputTermError.style.border = "";
+  termLabelError.style.color = "";
+  termLabelError.style.background = "";
+
+  return true;
+}
+
+function isRateValidInput() {
+  const divInputRateError = document.querySelector(".input-interest-rate");
+  const rateSpanError = document.getElementById("rate-error-message");
+  const rateLabelError = document.querySelector("label[for='interest-rate']");
+  const rateInput = document.getElementById("interest-rate");
+
+  rateSpanError.textContent = "";
+
+  const rateValue = parseFloat(rateInput.value);
+
+  if (isNaN(rateValue)) {
+    rateSpanError.textContent = "This field is required";
+    divInputRateError.style.border = "1px solid var(--color-red)";
+    rateLabelError.style.color = "var(--color-white)";
+    rateLabelError.style.background = "var(--color-red)";
+
+    return false;
+  }
+
+  divInputRateError.style.border = "";
+  rateLabelError.style.color = "";
+  rateLabelError.style.background = "";
+
+  return true;
+}
+
+function isCheckboxValid() {
+  const checkboxErrorSpan = document.getElementById(
+    "mortgagetype-error-message"
+  );
+  const checkboxes = document.querySelectorAll('input[name="mortgage-type"]');
+  let isChecked = false;
+
+  checkboxErrorSpan.textContent = "";
+
+  checkboxes.forEach(function (checkbox) {
+    if (checkbox.checked) {
+      isChecked = true;
+    }
+  });
+
+  if (!isChecked) {
+    checkboxErrorSpan.textContent = "This field is required";
+    return false;
+  }
+
+  return true;
+}
+
 // Mortgage Operation
 // Calculates monthly payments and total repayment
 function OperationRepayment() {
@@ -93,6 +199,18 @@ function resultDisplay(resultOperation) {
 }
 
 btnCalculate.addEventListener("click", () => {
-  const result = OperationRepayment();
-  resultDisplay(result);
+  isAmountValidInput();
+  isTermValidInput();
+  isRateValidInput();
+  isCheckboxValid();
+
+  if (
+    isAmountValidInput() &&
+    isTermValidInput() &&
+    isRateValidInput() &&
+    isCheckboxValid()
+  ) {
+    const result = OperationRepayment();
+    resultDisplay(result);
+  }
 });
